@@ -250,11 +250,49 @@ console.log(numeroMaior);
 /* 3 Crie um array de preços e use o método filter para criar um novo array que contenha
 apenas os preços inferioriores a R$ 50.*/
 
+const preços = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+let menoresCinquenta = preços.filter((valor) => valor < 50);
+
+console.log(menoresCinquenta)
+
 
 /* Fazer um programa no qual o usuário deve montar uma salada de frutas com uma
 cereja no final. Deve ser perguntado em sequência “Qual fruta adicionar?”. Quando
 for adicionado a cereja, finalizar com a frase “Sua salada de frutas está pronta!”.
 Mostrar a lista das frutas. (DESAFIO: Mostrar também a quantidade de cada fruta)*/
+
+let listaSalada = [];
+let frutaSemrepeticao = [];
+let quantidadeSemrepeticao = [];
+
+let continuar = true;
+
+while(continuar == true){
+    let fruta = prompt("Qual a fruta de agora?").toLowerCase()
+    if(fruta == "cereja"){
+        continuar = false
+    }
+    listaSalada.push(fruta)  
+}
+
+alert('Sua salada de frutas está pronta!');
+alert(`Sua salada tem essas frutas: ${listaSalada}`);
+
+listaSalada.forEach((frutaAtual) => {let indiceDaFrutaAtual = frutaSemrepeticao.indexOf(frutaAtual);
+if(indiceDaFrutaAtual == -1) {
+    frutaSemrepeticao.push(frutaAtual)
+    quantidadeSemrepeticao.push(1)
+} else {
+     
+    quantidadeSemrepeticao[indiceDaFrutaAtual]++
+}
+}
+)
+for(let i = 0; i < frutaSemrepeticao.length; i++){
+    let mensagem = `A fruta ${frutaSemrepeticao[i]} tem ${quantidadeSemrepeticao[i]} elementos na salada`
+    alert(mensagem)
+}
 
 
 
@@ -263,3 +301,30 @@ de um laço de repetição while, onde o usuário tenha a opção de digitar uma
 nota ou verificar resultado digitando “-1”. Armazene as notas em um Array e utilize
 o método reduce para obter a soma delas, após ter a soma calcule a média dividindo
 a soma pelo tamanho do array (array.length).*/
+
+let notas = []
+
+// Variavel para controlar o laço
+let continuar = true
+
+while(continuar == true){
+    let nota = Number(prompt("Digite uma nota ou -1 para parar"))
+    if(nota == -1){
+        // interrupção do laço de repetição
+        continuar = false
+    } else {
+        // adicionar a nota no vetor de notas
+        notas.push(nota)
+    }
+}
+
+// Aqui já teremos um vetor com as notas
+// Encontrar a soma das notas
+let somaDasNotas = notas.reduce((somaAcumulada, notaAtual) => {
+    let novaSoma = somaAcumulada + notaAtual
+    return novaSoma
+}, 0)
+
+let quantidadeDeNotas = notas.length
+let media = somaDasNotas / quantidadeDeNotas
+alert(`A sua média foi ${media}`)
